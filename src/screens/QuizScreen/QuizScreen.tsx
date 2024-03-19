@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {fetchQuiz, addIncorrectAnswer} from '@slices/quizSlice';
+import Radio from '@components/Radio';
 import {useAppDispatch, useAppSelector} from '@shared/useRedux';
 import {Question} from '@type/slice/quizType';
 
@@ -118,6 +119,11 @@ const QuizScreen = () => {
         </STC.QuestionText>
         {questions[currentQuestionIndex]?.options?.map((option, index) => (
           <STC.AnswerContainer key={index} onPress={() => handleAnswer(option)}>
+            <Radio
+              id={index}
+              checked={option === selectedAnswer}
+              handleRadio={() => handleAnswer(option)}
+            />
             <STC.AnswerText
               correct={
                 option === questions[currentQuestionIndex].correct_answer

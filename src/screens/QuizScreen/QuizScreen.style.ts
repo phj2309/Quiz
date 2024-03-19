@@ -53,6 +53,7 @@ export const AnswerText = styled.Text<{
 }>`
   color: black;
   font-size: 15px;
+  margin-left: 7px;
 
   ${({selected, correct, selectedAnswer}) =>
     selectedAnswer !== null &&
