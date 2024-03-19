@@ -7,7 +7,8 @@ export const SafeArea = styled.SafeAreaView`
 `;
 
 export const Container = styled.View`
-  padding: 30px;
+  flex: 1;
+  padding: 50px 30px;
   align-items: center;
 `;
 
