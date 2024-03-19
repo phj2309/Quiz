@@ -102,6 +102,8 @@ export const AnswerText = styled.Text<{
 `;
 
 export const QuizContainer = styled.View`
+  width: 100%;
+
   margin-bottom: 30px;
   justify-content: center;
 `;

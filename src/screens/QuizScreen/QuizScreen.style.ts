@@ -8,6 +8,7 @@ export const SafeArea = styled.SafeAreaView`
 
 export const Container = styled.ScrollView`
   flex-grow: 1;
+  width: 100%;
   padding: 30px;
 `;
 
