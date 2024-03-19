@@ -10,7 +10,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import MainScreen from '@screens/MainScreen';
 import QuizScreen from '@screens/QuizScreen';
 import ResultScreen from '@screens/ResultScreen';
-// import IncorrectAnswersScreen from '@screens/IncorrectAnswersScreen';
+import IncorrectAnswersScreen from '@screens/IncorrectAnswersScreen';
 
 import store from '@store/index';
 
@@ -22,7 +22,7 @@ type RootStackParamList = {
     correctAnswers: number;
     incorrectAnswers: number;
   };
-  // IncorrectAnswers: undefined;
+  IncorrectAnswers: undefined;
 };
 
 export type RootStackNavigationProp<T extends keyof RootStackParamList> =
@@ -59,11 +59,11 @@ const App = () => {
             component={ResultScreen}
             options={{title: '퀴즈 결과'}}
           />
-          {/* <Stack.Screen
+          <Stack.Screen
             name="IncorrectAnswers"
             component={IncorrectAnswersScreen}
             options={{title: '오답 노트'}}
-          /> */}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

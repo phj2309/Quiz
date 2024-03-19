@@ -34,11 +34,8 @@ const ResultScreen = () => {
     navigation.navigate('Quiz');
   };
 
-  // 오답 노트 화면으로 네비게이션하는 함수
   const goToIncorrectAnswers = () => {
-    console.log('>>');
-
-    // navigation.navigate('IncorrectAnswers');
+    navigation.navigate('IncorrectAnswers');
   };
 
   return (

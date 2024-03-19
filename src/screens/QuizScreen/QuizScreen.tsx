@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {fetchQuiz, addIncorrectAnswer} from '@slices/quizSlice';
-// import Radio from '@components/Radio';
 import {useAppDispatch, useAppSelector} from '@shared/useRedux';
 import {Question} from '@type/slice/quizType';
 
@@ -24,9 +23,8 @@ const QuizScreen = () => {
 
   useEffect(() => {
     if (quiz.question.status === 'SUCCESS') {
-      // 데이터가 유효한지 검사하는 로직 추가
       if (!quiz.question.results || quiz.question.results.length === 0) {
-        dispatch(fetchQuiz()); // 데이터를 다시 불러오는 액션 호출
+        dispatch(fetchQuiz());
         return;
       }
 
@@ -35,11 +33,11 @@ const QuizScreen = () => {
         options: [q.correct_answer, ...q.incorrect_answers].sort(
           () => Math.random() - 0.5,
         ),
-      })); // 옵션 섞기
+      }));
 
       setQuestions(shuffledQuestions);
       setIsLoading(false);
-      setQuizStartTime(new Date()); // 퀴즈 시작 시간 설정
+      setQuizStartTime(new Date());
     } else if (quiz.question.status === 'FAIL') {
       dispatch(fetchQuiz());
       setIsLoading(true);
@@ -49,7 +47,7 @@ const QuizScreen = () => {
   }, [quiz.question]);
 
   const handleAnswer = (selectedOption: string) => {
-    if (selectedAnswer !== null) return; // 이미 답을 선택했다면 추가 동작 방지
+    if (selectedAnswer !== null) return;
 
     const questionData = questions[currentQuestionIndex];
     const isCorrect =
@@ -79,7 +77,7 @@ const QuizScreen = () => {
   const goToNextQuestion = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(prev => prev + 1);
-      setSelectedAnswer(null); // 다음 문항으로 넘어가면 선택한 답을 초기화
+      setSelectedAnswer(null);
       setCorrectMessage('');
     } else {
       navigation.reset({
@@ -120,13 +118,6 @@ const QuizScreen = () => {
         </STC.QuestionText>
         {questions[currentQuestionIndex]?.options?.map((option, index) => (
           <STC.AnswerContainer key={index} onPress={() => handleAnswer(option)}>
-            {/* <Radio
-              id={index}
-              checked={option === selectedAnswer}
-              handleRadio={() => {
-                //console.log(item);
-              }}
-            /> */}
             <STC.AnswerText
               correct={
                 option === questions[currentQuestionIndex].correct_answer
