@@ -1,0 +1,23 @@
+import {Action, configureStore, ThunkAction} from '@reduxjs/toolkit';
+import quizSlice from '@slices/quizSlice';
+
+export const store = configureStore({
+  reducer: {
+    quiz: quizSlice,
+  },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
+});
+
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;
+
+export default store;
