@@ -1,14 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Dimensions} from 'react-native';
-import {useNavigation, useRoute} from '@react-navigation/native';
 import {PieChart} from 'react-native-chart-kit';
+
+import {useNavigation, useRoute} from '@react-navigation/native';
+import {useAppDispatch} from '@shared/useRedux';
 import {RootStackScreenProps} from '@/App';
+import {resetIncorrectAnswers} from '@slices/quizSlice';
+
 import * as STC from './ResultScreen.style';
 
 const screenWidth = Dimensions.get('window').width;
 
 const ResultScreen = () => {
   const navigation = useNavigation();
+  const dispatch = useAppDispatch();
+
   const route = useRoute<RootStackScreenProps<'Result'>['route']>();
   const {timeTaken, correctAnswers, incorrectAnswers} = route.params;
 
@@ -32,6 +38,7 @@ const ResultScreen = () => {
 
   const handleRetryQuiz = () => {
     navigation.navigate('Quiz');
+    dispatch(resetIncorrectAnswers());
   };
 
   const goToIncorrectAnswers = () => {
